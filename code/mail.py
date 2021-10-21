@@ -4,8 +4,8 @@ def sendMail(message):
     try:
         s = smtplib.SMTP('smtp.gmail.com', 587) 
         s.starttls() 
-        s.login("software.testing.voice@gmail.com", "Sweta@09") 
-        s.sendmail("software.testing.voice@gmail.com", "patelkd00710@gmail.com" , message) 
+        s.login("search.summerizer@gmail.com", PASSWORD) 
+        s.sendmail("search.summerizer@gmail.com", RECEIVER ADDRESS , message) 
         s.quit()
         return "Mail Sent Successfully"
     except:
