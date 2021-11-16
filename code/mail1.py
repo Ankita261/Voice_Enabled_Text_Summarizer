@@ -12,8 +12,8 @@ def sendMail(topic):
     '''
     #The mail addresses and password
     sender_address = 'search.summarizer@gmail.com'
-    sender_pass = PASSWORD
-    receiver_address = RECEIVER ADDRESS
+    sender_pass = 'HCIProject'
+    receiver_address = 'ankita.mandal2611@gmail.com'
     #Setup the MIME
     message = MIMEMultipart()
     message['From'] = sender_address

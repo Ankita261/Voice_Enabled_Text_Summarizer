@@ -8,19 +8,33 @@ import x
 from bs4 import BeautifulSoup 
 import speech_recognition as sr
 def final():
+    print("Thank You. The program is starting now.")
+    print("Choose from the following options")
+    t2v.speechTrans("Thank You. The program is starting now.")
+    t2v.speechTrans("Choose from the following options")
+    print("Options -")
+    print("1. Press 1 to search for data using voice search")
+    print("2. Press 2 to summarized the existing text data")
+    optionad=int(input())
+    
     def stot():
-        r = sr.Recognizer()
-        with sr.Microphone() as source:
-            r.adjust_for_ambient_noise(source)
-            print("Speak......")
-            audio = r.listen(source)
-            try:
-                return r.recognize_google(audio)
-            except Exception as e:
-                return "Voice not recognised Speak again"
-                exit(0)
-
-
+        try:
+            r = sr.Recognizer()
+            with sr.Microphone() as source:
+                r.adjust_for_ambient_noise(source)
+                print("Speak......")
+                audio = r.listen(source)
+                try:
+                    return r.recognize_google(audio)
+                except Exception as e:
+                    return "Voice not recognised Speak again"
+                    exit(0)
+        except:
+            t2v.speechTrans("An error occured your microphone is not working")
+            t2v.speechTrans("Write the topic")
+            print("An error occured your microphone is not working")
+            print("Write the topic")
+            return str(input())
     t2v.speechTrans("Tell the topic")
     topic=stot()
 
@@ -41,7 +55,21 @@ def final():
         t2v.speechTrans("Press 1 to confirm the topic or press 0 to restart")
         print("1. Press 1 to confirm the topic \n2. Press 0 to restart \nChoice: ")
         inp=int(input())
-    data=scrapper.get(topic)
+    
+    if(optionad==1):
+        data=scrapper.get(topic)
+    if(optionad==2):
+        t2v.speechTrans("Please confirm that the data to summarized the existing text data available in the file \"text-for-summarization\"")
+        print("1. Press 1 to confirm that the data to summarized the existing text data available in the file \"text-for-summarization\"")
+        ink=int(input())
+        while (ink!=1):
+            print("Press 1 to confirm that the data to summarized the existing text data available in the file \"text-for-summarization.txt\"")
+            t2v.speechTrans("Please confirm that the data to summarized the existing text data available in the file \"text-for-summarization.txt\"")
+            ink=int(input())
+        with open('text-for-summarization.txt') as f:
+            data = f.read()
+    
+
     if len(data)==0:
         print("No infomation related to this topic can be found. Please try with a different topic")
         t2v.speechTrans("No infomation related to this topic can be found. Please try with a different topic")
@@ -67,6 +95,7 @@ def final():
     if(option=="1" or option=="one" or option==1):
         t2v.speechTrans("Storing the summarized data in text file, Check Results folder.")
         print("Storing the summarized data in text file, Check Results folder.")
+        
         t2v.speechTrans(handleFile.CreateFile(s,topic))
     if(option==2 or option=="two" or  option=="2"):
 
